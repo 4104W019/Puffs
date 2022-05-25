@@ -3,19 +3,20 @@ RewriteEngine on
 
 # Root
 RewriteRule ^phpinfo/$   phpinfo.php [nc,qsa]
+RewriteRule ^index/$   index.php [nc,qsa]
 
 # TeatController
-RewriteRule ^test/$   Controller/TestController.php [nc,qsa]
-RewriteRule ^test/([0-9]+)/$   Controller/TestController.php?id=$1 [nc,qsa]
+#RewriteRule ^test/$   Controller/TestController.php [nc,qsa]
+#RewriteRule ^test/([0-9]+)/$   Controller/TestController.php?id=$1 [nc,qsa]
 
 # DishController
-RewriteRule ^dish/$   Controller/DishController.php [nc,qsa]
-RewriteRule ^dish/([0-9]+)/$   Controller/DishController.php?id=$1 [nc,qsa]
+#RewriteRule ^dish/$   Controller/DishController.php [nc,qsa]
+#RewriteRule ^dish/([0-9]+)/$   Controller/DishController.php?id=$1 [nc,qsa]
 
 # SetController
-RewriteRule ^set/$   Controller/SetController.php [nc,qsa]
-RewriteRule ^set/([0-9]+)/$   Controller/SetController.php?id=$1 [nc,qsa]
+#RewriteRule ^set/$   Controller/SetController.php [nc,qsa]
+#RewriteRule ^set/([0-9]+)/$   Controller/SetController.php?id=$1 [nc,qsa]
 
 # OrderController
-RewriteRule ^order/$   Controller/OrderController.php [nc,qsa]
-RewriteRule ^order/([0-9]+)/$   Controller/OrderController.php?id=$1 [nc,qsa]
+#RewriteRule ^order/$   Controller/OrderController.php [nc,qsa]
+#RewriteRule ^order/([0-9]+)/$   Controller/OrderController.php?id=$1 [nc,qsa]

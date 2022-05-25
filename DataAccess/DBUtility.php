@@ -1,61 +1,88 @@
 <?php
-require_once("ConnectionConfig.php");
+require_once("Config.php");
 
 public class DBUtility{
+
+    protected $connection = null;
     // 連線
-    public function getConnection(){
-        $conn = mysqli_connect($this->host,$this->user,$this->passwd,$this->db);
-        return $conn;
+    public function __construct()
+    {
+        try {
+            $this->connection = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DATABASE_NAME);
+
+            if ( mysqli_connect_errno()) {
+                throw new Exception("Could not connect to database.");   
+            }
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());   
+        }           
     }
 
     // 查詢
-    public function execute($sql){
-        $conn = $this->getConnection();
-        $arr = array();
-        if($conn!=null){
-            $rtn = mysqli_query($conn,$sql);
-            while($rtn!==false&&($row=mysqli_fetch_array($rtn))!=null){
-                $index = -1;
-                $obj = new $this->modelName();
-                foreach($columns as $column){
-                    $obj->{"set".ucfirst($column)}($row[  $index]);
-                }
-                $arr[] = $obj;
-            }
-            mysqli_close($conn);
+    public function execute($query = "" , $params = [])
+    {
+        try {
+            $stmt = $this->executeStatement( $query , $params );
+            $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);               
+            $stmt->close();
+ 
+            return $result;
+        } catch(Exception $e) {
+            throw New Exception( $e->getMessage() );
         }
-        return $arr;
+        return false;
     }
 
-    // 新增
-    public function create($sql){
-        $tag = false;
-        $conn = $this->getConnection();
-        mysqli_query($conn,$sql);
-        $tag = true;
-        mysqli_close($conn);
-        return $tag;
+    protected function executeStatement($query = "" , $params = [])
+    {
+        try {
+            $stmt = $this->connection->prepare( $query );
+ 
+            if($stmt === false) {
+                throw New Exception("Unable to do prepared statement: " . $query);
+            }
+ 
+            if( $params ) {
+                $stmt->bind_param($params[0], $params[1]);
+            }
+ 
+            $stmt->execute();
+            
+            return $stmt;
+        } catch(Exception $e) {
+            throw New Exception( $e->getMessage() );
+        }
     }
 
-    // 修改
-    public function update($sql){
-        $tag = false;
-        $conn = $this->getConnection();
-        mysqli_query($conn,$sql);
-        $tag = true;
-        mysqli_close($conn);
-        return $tag;
-    }
+    // // 新增
+    // public function create($sql){
+    //     $tag = false;
+    //     $conn = $this->getConnection();
+    //     mysqli_query($conn,$sql);
+    //     $tag = true;
+    //     mysqli_close($conn);
+    //     return $tag;
+    // }
 
-    // 刪除
-    public function delete($sql){
-        $tag = false;
-        $conn = $this->getConnection();
-        mysqli_query($conn,$sql);
-        $tag = true;
-        mysqli_close($conn);
-        return $tag;
-    }
+    // // 修改
+    // public function update($sql){
+    //     $tag = false;
+    //     $conn = $this->getConnection();
+    //     mysqli_query($conn,$sql);
+    //     $tag = true;
+    //     mysqli_close($conn);
+    //     return $tag;
+    // }
+
+    // // 刪除
+    // public function delete($sql){
+    //     $tag = false;
+    //     $conn = $this->getConnection();
+    //     mysqli_query($conn,$sql);
+    //     $tag = true;
+    //     mysqli_close($conn);
+    //     return $tag;
+    // }
 }
 
 ?>
