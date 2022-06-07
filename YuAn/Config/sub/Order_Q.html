@@ -1,0 +1,144 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+<META HTTP-EQUIV="Expires" CONTENT="-1">
+	<!--Jquery-->
+	<script lang="JavaScript" src="../../common/Jq/jquery-1.6.2.min.js"></script>
+    <!--<script src="../../common/Jq/jquery.ui.datepicker.min.js"></script>-->
+	<!--<link rel="stylesheet" href="../../common/Jq/jquery-ui-1.8.16.custom.css">-->
+	<!--Else-->
+    <script lang="JavaScript" src="../../common/JSONParser.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../css/ConfigStyle.css" />
+	
+	<style>
+        DIV {cursor: default;}   
+	</style>
+	<script>
+		$(document).bind("contextmenu",function(event){return false;});
+		
+		//CreatTab
+		function init()
+		{
+		    if ($("#OrderType").val() == "0") {
+		        $('#OrderID, #OrderPhone, #OrderDate').attr("disabled", true);
+		    }
+
+		    $('#OrderType').change(function (event) {
+		        if ($("#OrderType").val() == "0") {
+		            $('#OrderID, #OrderPhone, #OrderDate').attr("disabled", true);
+		        }
+		        else {
+		            $('#OrderID, #OrderPhone, #OrderDate').attr("disabled", false);
+		        }
+		    });
+		    //var GetCmd_url = "http://" + parent.parent.g_ip + ":" + parent.parent.g_port_num + "/cmd";
+		    //tmpDataArr_result = cjp_getData(GetCmd_url);
+
+		    //$("#AST_DATE_select_button").datepicker();
+		    //$("#AST_DATE_select_button").datepicker("option", "changeYear", true);
+		    //$("#AST_DATE_select_button").datepicker("option", "yearRange", "1971:2036");
+		}
+
+		function QueryData() {
+
+		}
+
+		function CreatTable() {
+
+		}
+
+		function OrderAdd() {
+		    parent.ConfigMain.location.replace('Order_A.html');
+		}
+
+		function OnButtonDown(button) {
+		    button.style.backgroundImage = "url(../../image/main/apply_down1.png)";
+		}
+		function OnButtonUp(button) {
+		    button.style.backgroundImage = "url(../../image/main/apply_up1.png)";
+		}
+		function OnButtonOver(button) {
+		    button.style.backgroundImage = "url(../../image/main/apply_focus1.png)";
+		}
+		function OnButtonOut(button) {
+		    button.style.backgroundImage = "url(../../image/main/apply_up1.png)";
+		}
+
+		function c_log(v) { try {/*console.log(v)*/ } catch (e) { } }
+		
+	</script>
+</head>
+<body onload="init();">
+	<div id="Config_SubContent">
+        <table id="Config_table" >
+            <tr>
+                <td align ="left" valign ="center" bgcolor ="#000000" colspan="2" height = "20px"><font color="#FFFFFF" size="3" style="font-weight: bold">&nbsp;訂單查詢</font></td>
+            </tr>
+            <tr>
+                <td width = 100% >
+			        <div id="tableContent">
+                        <div id="table_SubContent">
+                            <div id="OrderAdd_btn" class="Content_button" onclick="OrderAdd();" onmouseover="OnButtonOver(this)" onmouseout="OnButtonOut(this)" onmousedown="OnButtonDown(this)" onmouseup="OnButtonUp(this)">新增訂單</div>
+				            <div id="ItemContent">
+					            <table id="tabBasic" rules=none border=2 style="width:100%;">
+                                    <tr>
+                                        <td>查詢種類：</td>
+                                        <td>
+                                            <select id="OrderType" class="Cselesct">
+                                                <option value="0" selected>全部</option>
+                                                <option value="1">部分</option>
+                                            </select>
+                                        </td>
+                                        <td  width = 60% ></td>
+                                    </tr>
+                                    <tr>
+                                        <td>訂單編號：</td>
+                                        <td>
+                                            <input type="text" name="OrderID" id="OrderID" class="Cinput" maxlength="32" size="17">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>訂購人電話：</td>
+                                        <td>
+                                            <input type="text" name="OrderPhone" id="OrderPhone" class="Cinput" maxlength="32" size="17">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>訂購日期：</td>
+                                        <td>
+                                            <!--<input type="button" id="DATE_select_button" style="width:200px;height:22px"/>-->
+                                            <input type="text" name="OrderDate" id="OrderDate" class="Cinput" maxlength="10" size="17">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div id="OrderQuery" class="Content_button" onclick="QueryData();" onmouseover="OnButtonOver(this)" onmouseout="OnButtonOut(this)" onmousedown="OnButtonDown(this)" onmouseup="OnButtonUp(this)">查詢</div>
+                                        </td>
+                                    </tr>
+					            </table>
+                                </br>
+                                <span class="span_title">查詢結果</span>
+                                <table id="tabBasic2" border="1" width="100%">
+                                    <tr>
+                                        <td>訂單編號</td>
+                                        <td>訂購日期</td>
+                                        <td>配送日期</td>
+                                        <td>訂購人姓名</td>
+                                        <td>訂購人電話</td>
+                                        <td>訂購人住址</td>
+                                        <td>建立訂單員工編號</td>
+                                        <td>修改</td>
+                                        <td>刪除</td>
+                                    </tr>
+                                </table>
+				            </div>
+                        </div>
+			        </div>
+                </td>
+            </tr>
+        </table>
+	</div>
+</body>
+</html>
