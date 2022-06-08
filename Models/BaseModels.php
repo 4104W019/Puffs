@@ -15,39 +15,40 @@ class BaseModel extends DBUtility
 
     // 初始化Table
     function __construct($table){
+        parent::__construct();
         $this->_table = $table;
     }
 
     // 要取的欄位
     public function select($select){
-        $this->$_select = $select;
+        $this->_select = $select;
         return $this;
     }
     // 條件
-    public function where($where){
-        $this->$_where = " WHERE $where";
+    public function where($where){  
+        $this->_where = " WHERE $where";
         return $this;
     }
     // 排序
     public function orderby($orderby, $isasc){
         $ad = $isasc ? "AES" : "DESC";
-        $this->$_orderby = " ORDER BY $orderby $ad";
+        $this->_orderby = " ORDER BY '$orderby' $ad";
         return $this;
     }
     // 分頁
     public function limit(...$args){
         if (count($args) == 2) {
-            $this->$_limit = " LIMIT $args[0],$args[1]";
+            $this->_limit = " LIMIT $args[0],$args[1]";
         } else if (count($args) == 1) {
-            $this->$_limit = " LIMIT $args[0]";
+            $this->_limit = " LIMIT $args[0]";
         } else {
             return "";
         }
         return $this;
     }
     // 執行語句
-    public function toArray($where){
-        return $this->execute("SELECT $this->_select FROM $this->_table.$this->_where.$this->_orderby.$this->_limit");
+    public function toArray(){
+        return $this->execute("SELECT $this->_select FROM $this->_table $this->_where $this->_orderby $this->_limit");
     }
     // 新增
     public function add(...$args){
@@ -57,7 +58,7 @@ class BaseModel extends DBUtility
             $data = "";
             if(is_bool($value)){
                 $types.="b";
-                $data = $value?"1","0";
+                $data = $value?"1":"0";
             }
             elseif(is_double($value)){
                 $types.="d";
@@ -87,9 +88,9 @@ class BaseModel extends DBUtility
     public function update($updatearray){
         $arrkey = array_keys($updatearray);
         foreach ($arrkey as $value){
-            $value = $value."=?"
+            $value = $value."=?";
         }
-        $values = implode("," $arrkey);
+        $values = implode(",", $arrkey);
 
         $arr = array();
         $types = "";
@@ -97,7 +98,7 @@ class BaseModel extends DBUtility
             $data = "";
             if(is_bool($value)){
                 $types.="b";
-                $data = $value?"1","0";
+                $data = $value?"1":"0";
             }
             elseif(is_double($value)){
                 $types.="d";

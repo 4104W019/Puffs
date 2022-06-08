@@ -29,7 +29,7 @@ class BaseController
      */
     protected function getUrlParams()
     {
-        return parse_str($_SERVER['QUERY_STRING'], $query);
+        return parse_str(urldecode($_SERVER['QUERY_STRING']), $query);
     }
 
         /**

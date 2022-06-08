@@ -4,8 +4,8 @@
 // $DB_PASSWORD = "password";
 // $DB_DATABASE_NAME = "";
 
-define("DB_HOST", "localhost");
-define("DB_USERNAME", "username");
-define("DB_PASSWORD", "password");
-define("DB_DATABASE_NAME", "");
+define("DB_HOST", "172.17.0.3");
+define("DB_USERNAME", "web");
+define("DB_PASSWORD", "1qaz@WSX");
+define("DB_DATABASE_NAME", "puffs");
 ?>

@@ -1,15 +1,15 @@
-Options +FollowSymlinks
-RewriteEngine on
+#Options +FollowSymlinks
+#RewriteEngine on
 
 # Root
-RewriteRule ^phpinfo/$   phpinfo.php [nc,qsa]
-RewriteRule ^index/$   index.php [nc,qsa]
+#RewriteRule ^phpinfo/$   phpinfo.php [nc,qsa]
+#RewriteRule ^index/$   index.php [nc,qsa]
 
 # TeatController
 #RewriteRule ^test/$   Controller/TestController.php [nc,qsa]
 #RewriteRule ^test/([0-9]+)/$   Controller/TestController.php?id=$1 [nc,qsa]
 
-# DishController
+# DishController 
 #RewriteRule ^dish/$   Controller/DishController.php [nc,qsa]
 #RewriteRule ^dish/([0-9]+)/$   Controller/DishController.php?id=$1 [nc,qsa]
 
