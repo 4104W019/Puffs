@@ -1,0 +1,45 @@
+﻿@charset "utf-8";
+
+body{
+    margin: 0px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	color: #FFFFFF;
+    line-height: 24px;
+	margin-left: 0px;
+    /*background-color: #000000;*/
+}
+#loginarea{
+	width:544px;
+	height: 343px;
+    margin: 0px auto;
+    vertical-align: central;
+    background-color: #E0E0E0;
+}
+
+#Password1 {
+    width: 156px;
+}
+#UserName {
+    width: 156px;
+}
+.auto-style1 {
+    width: 133px;
+}
+.auto-style4 {
+    width: 196px;
+}
+
+.MenuButton {
+	width: 106px;
+    height: 24px;
+	text-align: center;
+    background-image: url('../image/main/apply_up1.png');
+    font-size: 12pt;
+    text-align: center;
+    vertical-align: middle;
+    color: #FFFFFF;
+    background-repeat:no-repeat;
+    background-color: #E0E0E0;
+    border: 0;
+}
