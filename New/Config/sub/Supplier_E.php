@@ -19,24 +19,20 @@
 		//CreatTab
 		function init()
 		{
+            var id = "<?php echo isset($_GET['id']) ? $_GET['id'] : "" ?>";
+            console.log("Supplier_E init id="+id);
+
             <?php
                 include "db_conn.php";
 
                 if(isset($_GET['id'])){
-                    $query_dish_e = "SELECT * FROM dish NATURAL JOIN supplier WHERE dId=".$_GET['id'];
-                    if($stmt = $db->query($query_dish_e)){
-
+                    $query_Supplier_e = "SELECT * FROM supplier WHERE sNo=".$_GET['id'];
+                    if($stmt = $db->query($query_Supplier_e)){
                         while($result=mysqli_fetch_object($stmt)){
-                            echo "$('#DishId').val('".$result->dId."');";
-                            echo "$('#DishName').val('".$result->dName."');";
-                            echo "$('#DishPrice').val('".$result->dPrice."');";
-                            echo "$('#DishDesc').val('".$result->description."');";
-                            echo "$('#DishSNo').val('".$result->sNo."');";
-                            //echo "$('#DishDesc').val(".$result->description.");";
-                            // echo "<td>".$result->sNo."</td>";
-                            // echo "<td>".$result->name."</td>";
-                            // echo "<td>".$result->phone."</td>";
-                            // echo "<td>".$result->address."</td>";
+                            echo "$('#SupplierSNo').val('".$result->sNo."');";
+                            echo "$('#SupplierName').val('".$result->name."');";
+                            echo "$('#SupplierPhone').val('".$result->phone."');";
+                            echo "$('#SupplierAddr').val('".$result->address."');";
                         }
 
                     }
@@ -53,8 +49,8 @@
 
 		}
 
-		function DishBack() {
-		    parent.ConfigMain.location.replace('Dish_Q.php');
+		function SupplierBack() {
+		    parent.ConfigMain.location.replace('Supplier_Q.php');
 		}
 
 		function OnButtonDown(button) {
@@ -85,60 +81,41 @@
 			        <div id="tableContent">
                         <div id="table_SubContent">
 				            <div id="ItemContent">
-                                <span class="span_title">修改單品項目</span>
-                                <form method="post" action="Dish_E_Fun.php">
-                                    <input type="text" name="DishId" id="DishId" class="Cinput" style="display: none;" maxlength="15" readonly>
+                                <span class="span_title">修改廠商項目</span>
+                                <form method="post" action="Supplier_E_Fun.php">
+                                    <input type="text" name="SupplierId" id="SupplierId" class="Cinput" style="display: none;" maxlength="15" readonly>
                                     <table id="tabBasic" rules=none border=2 style="width:100%;">
-                                        <tr>
-                                            <td>商品名稱：</td>
-                                            <td>
-                                                <input type="text" name="DishName"id="DishName" class="Cinput" maxlength="15">
-                                            </td>
-                                            <td  width = 60% ></td>
-                                        </tr>
-                                        <tr>
-                                            <td>價格：</td>
-                                            <td>
-                                                <input type="text" name="DishPrice" id="DishPrice" class="Cinput" maxlength="5">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>說明：</td>
-                                            <td>
-                                                <input type="text" name="DishDesc" id="DishDesc" class="Cinput" maxlength="30">
-                                            </td>
-                                        </tr>
                                         <tr>
                                             <td>廠商編號：</td>
                                             <td>
-                                                <input type="text" name="DishSNo" id="DishSNo" class="Cinput" maxlength="30">
+                                                <input type="text" name="SupplierSNo" id="SupplierSNo" class="Cinput" maxlength="15">
                                             </td>
                                         </tr>
-                                        <!-- <tr>
+                                        <tr>
                                             <td>廠商名稱：</td>
                                             <td>
-                                                <input type="text" name="DishDesc" id="Text1" class="Cinput" maxlength="15">
+                                                <input type="text" name="SupplierName" id="SupplierName" class="Cinput" maxlength="15">
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>廠商電話：</td>
                                             <td>
-                                                <input type="text" name="DishDesc" id="Text2" class="Cinput" maxlength="15">
+                                                <input type="text" name="SupplierPhone" id="SupplierPhone" class="Cinput" maxlength="15">
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>廠商住址：</td>
                                             <td>
-                                                <input type="text" name="DishDesc" id="Text3" class="Cinput" maxlength="15">
+                                                <input type="text" name="SupplierAddr" id="SupplierAddr" class="Cinput" maxlength="15">
                                             </td>
-                                        </tr> -->
+                                        </tr>
                                         <tr>
                                             <td>
-                                                <!-- <div id="DishSave" class="Content_button" onclick="SaveData();" onmouseover="OnButtonOver(this)" onmouseout="OnButtonOut(this)" onmousedown="OnButtonDown(this)" onmouseup="OnButtonUp(this)">儲存</div> -->
+                                                <!-- <div id="SupplierSave" class="Content_button" onclick="SaveData();" onmouseover="OnButtonOver(this)" onmouseout="OnButtonOut(this)" onmousedown="OnButtonDown(this)" onmouseup="OnButtonUp(this)">儲存</div> -->
                                                 <input type="submit" value="儲存" id="login_btn" class="Content_button" onmouseover="OnButtonOver(this)" onmouseout="OnButtonOut(this)" onmousedown="OnButtonDown(this)" onmouseup="OnButtonUp(this)"/>
                                             </td>
                                             <td>
-                                                <div id="DishBack" class="Content_button" onclick="DishBack();" onmouseover="OnButtonOver(this)" onmouseout="OnButtonOut(this)" onmousedown="OnButtonDown(this)" onmouseup="OnButtonUp(this)">返回</div>
+                                                <div id="SupplierBack" class="Content_button" onclick="SupplierBack();" onmouseover="OnButtonOver(this)" onmouseout="OnButtonOut(this)" onmousedown="OnButtonDown(this)" onmouseup="OnButtonUp(this)">返回</div>
                                             </td>
                                         </tr>
                                     </table>

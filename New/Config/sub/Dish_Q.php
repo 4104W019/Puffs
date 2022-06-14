@@ -100,7 +100,9 @@
                                     <tr>
                                         <td>
                                             <form method="post">
-												<input type="submit" id="DishQuery" name="DishQuery" class="Content_button" value="查詢" onmouseover="OnButtonOver(this)" onmouseout="OnButtonOut(this)" onmousedown="OnButtonDown(this)" onmouseup="OnButtonUp(this)"/>
+											<input type="submit" id="DishQuery" name="DishQuery" class="Content_button" value="查詢" onmouseover="OnButtonOver(this)" onmouseout="OnButtonOut(this)" onmousedown="OnButtonDown(this)" onmouseup="OnButtonUp(this)"/>
+											<input type="submit" id="DishQuery1" name="DishQuery1" class="Content_button" value="滯銷" onmouseover="OnButtonOver(this)" onmouseout="OnButtonOut(this)" onmousedown="OnButtonDown(this)" onmouseup="OnButtonUp(this)"/>
+											<input type="submit" id="DishQuery2" name="DishQuery2" class="Content_button" value="熱銷" onmouseover="OnButtonOver(this)" onmouseout="OnButtonOut(this)" onmousedown="OnButtonDown(this)" onmouseup="OnButtonUp(this)"/>
 											</form>
                                             <!--<div id="OrderQuery" class="Content_button" onclick="QueryData();" onmouseover="OnButtonOver(this)" onmouseout="OnButtonOut(this)" onmousedown="OnButtonDown(this)" onmouseup="OnButtonUp(this)">查詢</div>-->
                                         </td>
@@ -128,6 +130,46 @@
 									if(isset($_POST['DishQuery']) || $isDelete) { 
 										include "db_conn.php";
 										$query_dish = "SELECT * FROM dish NATURAL JOIN supplier";
+										if($stmt = $db->query($query_dish)){
+											while($result=mysqli_fetch_object($stmt)){
+												echo "<tr>";
+												echo "<td>".$result->dId."</td>";
+												echo "<td>".$result->dName."</td>";
+                                                echo "<td>".$result->dPrice."</td>";
+                                                echo "<td>".$result->description."</td>";
+                                                echo "<td>".$result->sNo."</td>";
+                                                echo "<td>".$result->name."</td>";
+                                                echo "<td>".$result->phone."</td>";
+                                                echo "<td>".$result->address."</td>";
+                                                echo "<td>".'<input type="button" onclick="DishModify('.$result->dId.');" value="修改" id="'.$result->dId.'" class="Content_button" onmouseover="OnButtonOver(this)" onmouseout="OnButtonOut(this)" onmousedown="OnButtonDown(this)" onmouseup="OnButtonUp(this)"/>'."</td>";
+                                                echo "<td>".'<input type="button" onclick="window.location.href=\'Dish_D_Fun.php?did='.$result->dId.'\';" value="刪除" id="'.$result->dId.'" class="Content_button" onmouseover="OnButtonOver(this)" onmouseout="OnButtonOut(this)" onmousedown="OnButtonDown(this)" onmouseup="OnButtonUp(this)"/>'."</td>";
+												echo "</tr>";
+											}
+										}
+									}
+									if(isset($_POST['DishQuery1'])) { 
+										include "db_conn.php";
+										$query_dish = "SELECT * FROM dish AS d, supplier WHERE d.dId NOT IN (SELECT dId FROM orders)";
+										if($stmt = $db->query($query_dish)){
+											while($result=mysqli_fetch_object($stmt)){
+												echo "<tr>";
+												echo "<td>".$result->dId."</td>";
+												echo "<td>".$result->dName."</td>";
+                                                echo "<td>".$result->dPrice."</td>";
+                                                echo "<td>".$result->description."</td>";
+                                                echo "<td>".$result->sNo."</td>";
+                                                echo "<td>".$result->name."</td>";
+                                                echo "<td>".$result->phone."</td>";
+                                                echo "<td>".$result->address."</td>";
+                                                echo "<td>".'<input type="button" onclick="DishModify('.$result->dId.');" value="修改" id="'.$result->dId.'" class="Content_button" onmouseover="OnButtonOver(this)" onmouseout="OnButtonOut(this)" onmousedown="OnButtonDown(this)" onmouseup="OnButtonUp(this)"/>'."</td>";
+                                                echo "<td>".'<input type="button" onclick="window.location.href=\'Dish_D_Fun.php?did='.$result->dId.'\';" value="刪除" id="'.$result->dId.'" class="Content_button" onmouseover="OnButtonOver(this)" onmouseout="OnButtonOut(this)" onmousedown="OnButtonDown(this)" onmouseup="OnButtonUp(this)"/>'."</td>";
+												echo "</tr>";
+											}
+										}
+									}
+									if(isset($_POST['DishQuery2'])) { 
+										include "db_conn.php";
+										$query_dish = "SELECT * FROM dish AS d, supplier AS s WHERE d.dId IN (SELECT dId FROM orders GROUP BY dId HAVING COUNT(*)>2)";
 										if($stmt = $db->query($query_dish)){
 											while($result=mysqli_fetch_object($stmt)){
 												echo "<tr>";

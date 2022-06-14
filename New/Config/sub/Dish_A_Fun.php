@@ -1,4 +1,4 @@
-<?php
+﻿<?php
     include "db_conn.php";
 
     $dId = isset($_POST['DishId'])?$_POST['DishId']:"";
@@ -8,16 +8,17 @@
     $sNo = isset($_POST['DishSNo'])?$_POST['DishSNo']:"";
 
     $listSet = array();
-    array_push($listSet, "dName = '".$dName."'");
-    array_push($listSet, "dPrice = '".$dPrice."'");
-    array_push($listSet, "description = '".$description."'");
-    array_push($listSet, "sNo = ".$sNo);
+    array_push($listSet, $dId);
+    array_push($listSet, "'".$dName."'");
+    array_push($listSet, "'".$dPrice."'");
+    array_push($listSet, "'".$description."'");
+    array_push($listSet, $sNo);
 
     $strSet = implode(",", $listSet);
-    $sql = "UPDATE dish SET ".$strSet." WHERE dId=".$dId;
-
+    $sql = "INSERT INTO dish VALUES(".$strSet.")";
+    print_r($sql);
     $result = $db->query($sql);
-    
+
     if($result === TRUE){
         function_alert("Success");
     }

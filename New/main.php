@@ -53,7 +53,7 @@
 	
 	    function refresh() {
 	        //parent.window.location.reload();
-	        parent.window.location.replace('index.html');
+	        parent.window.location.replace('index.php');
 	    }
 	    function mouseover_Loginout() {
 	        document.getElementById("imgLoginout").src = "image/main/logout04.png";
@@ -127,7 +127,7 @@
                         <!-- <div id="div_Loginout" class="MenuButton" onclick="refresh();"> -->
 						<div id="div_Loginout" class="MenuButton">
 							<a href="logoutfun.php">
-								<img id="imgLoginout" src="./image/main/logout03.png" height="40" width="40" alt="logout" title="logout" onmouseover="mouseover_Loginout()" onmouseout="mouseout_Loginout()" />
+								<img id="imgLoginout" src="image/main/logout03.png" height="40" width="40" alt="logout" title="logout" onmouseover="mouseover_Loginout()" onmouseout="mouseout_Loginout()" />
 							</a>
 						</div>
                     </td>
@@ -136,7 +136,8 @@
 		</nav>
 	</header>
 	<div id="article">
-		<iframe id="IfrmMain" name="IfrmMain" src="./Config/Config.html" scrolling="no" frameBorder="no"></iframe>
+		<!-- <iframe id="IfrmMain" name="IfrmMain" src="./Config/Config.html" scrolling="no" frameBorder="no"></iframe> -->
+		<iframe id="IfrmMain" name="IfrmMain" src="./menu/menu.php" scrolling="no" frameBorder="no"></iframe>
 	</div>
 	<footer>
 		<img class="header_img" src="./image/main/bg_footer.png">

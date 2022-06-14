@@ -77,16 +77,18 @@
 									<tr>
 										<td>員工編號</td>
 										<td>員工姓名</td>
+										<td>經手訂單數</td>
 									</tr>
 									<?php
 									if(isset($_POST['EmployeeQuery'])) { 
 										include "db_conn.php";
-										$query_employee = "SELECT eId, eName FROM employee";
+										$query_employee = "SELECT e.eId, e.eName ,COUNT(*) AS oNum FROM employee AS e JOIN orders AS o ON e.eId = o.eId GROUP BY e.eId";
 										if($stmt = $db->query($query_employee)){
 											while($result=mysqli_fetch_object($stmt)){
 												echo "<tr>";
 												echo "<td>".$result->eId."</td>";
 												echo "<td>".$result->eName."</td>";
+												echo "<td>".$result->oNum."</td>";
 												echo "</tr>";
 											}
 										}

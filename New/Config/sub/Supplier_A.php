@@ -27,8 +27,8 @@
 
 		}
 
-		function DishBack() {
-		    parent.ConfigMain.location.replace('Dish_Q.php');
+		function SupplierBack() {
+		    parent.ConfigMain.location.replace('Supplier_Q.php');
 		}
 
 		function OnButtonDown(button) {
@@ -52,7 +52,7 @@
 	<div id="Config_SubContent">
         <table id="Config_table" >
             <tr>
-                <td align ="left" valign ="center" bgcolor ="#000000" colspan="2" height = "20px"><font color="#FFFFFF" size="3" style="font-weight: bold">&nbsp;單點新增</font></td>
+                <td align ="left" valign ="center" bgcolor ="#000000" colspan="2" height = "20px"><font color="#FFFFFF" size="3" style="font-weight: bold">&nbsp;廠商新增</font></td>
             </tr>
             <tr>
                 <td width = 100% >
@@ -60,58 +60,39 @@
                         <div id="table_SubContent">
 				            <div id="ItemContent">
                                 <span class="span_title">新增廠商項目</span>
-                                <form method="post" action="Dish_A_Fun.php">
+                                <form method="post" action="Supplier_A_Fun.php">
                                     <table id="tabBasic" rules=none border=2 style="width:100%;">
-                                        <tr>
-                                            <td>商品編號：</td>
-                                            <td>
-                                                <input type="text" name="DishId" id="DishId" class="Cinput" maxlength="15">
-                                            </td>
-                                            <td  width = 60% ></td>
-                                        </tr>
-                                        <tr>
-                                            <td>商品名稱：</td>
-                                            <td>
-                                                <input type="text" name="DishName" id="DishName" class="Cinput" maxlength="15">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>價格：</td>
-                                            <td>
-                                                <input type="text" name="DishPrice" id="DishPrice" class="Cinput" maxlength="5">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>說明：</td>
-                                            <td>
-                                                <input type="text" name="DishDesc" id="DishDesc" class="Cinput" maxlength="30">
-                                            </td>
-                                        </tr>
                                         <tr>
                                             <td>廠商編號：</td>
                                             <td>
-                                                <input type="text" name="DishSNo" id="DishSNo" class="Cinput" maxlength="15">
+                                                <input type="text" name="SupplierSNo" id="SupplierSNo" class="Cinput" maxlength="15">
                                             </td>
                                         </tr>
-                                        <!-- <tr>
+                                        <tr>
+                                            <td>廠商名稱：</td>
+                                            <td>
+                                                <input type="text" name="SupplierName" id="SupplierName" class="Cinput" maxlength="15">
+                                            </td>
+                                        </tr>
+                                        <tr>
                                             <td>廠商電話：</td>
                                             <td>
-                                                <input type="text" name="DishDesc" id="Text2" class="Cinput" maxlength="15">
+                                                <input type="text" name="SupplierPhone" id="SupplierPhone" class="Cinput" maxlength="15">
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>廠商住址：</td>
                                             <td>
-                                                <input type="text" name="DishDesc" id="Text3" class="Cinput" maxlength="15">
+                                                <input type="text" name="SupplierAddr" id="SupplierAddr" class="Cinput" maxlength="15">
                                             </td>
-                                        </tr> -->
+                                        </tr>
                                         <tr>
                                             <td>
-                                                <!-- <div id="DishAdd" class="Content_button" onclick="AddData();" onmouseover="OnButtonOver(this)" onmouseout="OnButtonOut(this)" onmousedown="OnButtonDown(this)" onmouseup="OnButtonUp(this)">新增</div> -->
+                                                <!-- <div id="SupplierAdd" class="Content_button" onclick="AddData();" onmouseover="OnButtonOver(this)" onmouseout="OnButtonOut(this)" onmousedown="OnButtonDown(this)" onmouseup="OnButtonUp(this)">新增</div> -->
                                                 <input type="submit" value="新增" id="Add_btn" class="Content_button" onmouseover="OnButtonOver(this)" onmouseout="OnButtonOut(this)" onmousedown="OnButtonDown(this)" onmouseup="OnButtonUp(this)"/>
                                             </td>
                                             <td>
-                                                <div id="DishBack" class="Content_button" onclick="DishBack();" onmouseover="OnButtonOver(this)" onmouseout="OnButtonOut(this)" onmousedown="OnButtonDown(this)" onmouseup="OnButtonUp(this)">返回</div>
+                                                <div id="SupplierBack" class="Content_button" onclick="SupplierBack();" onmouseover="OnButtonOver(this)" onmouseout="OnButtonOut(this)" onmousedown="OnButtonDown(this)" onmouseup="OnButtonUp(this)">返回</div>
                                             </td>
                                         </tr>
                                     </table>
