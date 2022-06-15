@@ -149,7 +149,7 @@
 									}
 									if(isset($_POST['DishQuery1'])) { 
 										include "db_conn.php";
-										$query_dish = "SELECT * FROM dish AS d NATURAL JOIN supplier WHERE d.dId NOT IN (SELECT dId FROM orders)";
+										$query_dish = "SELECT * FROM dish AS d NATURAL JOIN supplier WHERE d.dId NOT IN (SELECT DISTINCT dId FROM orders)";
 										if($stmt = $db->query($query_dish)){
 											while($result=mysqli_fetch_object($stmt)){
 												echo "<tr>";
