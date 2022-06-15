@@ -149,7 +149,7 @@
 									}
 									if(isset($_POST['DishQuery1'])) { 
 										include "db_conn.php";
-										$query_dish = "SELECT * FROM dish AS d, supplier WHERE d.dId NOT IN (SELECT dId FROM orders)";
+										$query_dish = "SELECT * FROM dish AS d NATURAL JOIN supplier WHERE d.dId NOT IN (SELECT dId FROM orders)";
 										if($stmt = $db->query($query_dish)){
 											while($result=mysqli_fetch_object($stmt)){
 												echo "<tr>";
@@ -169,7 +169,7 @@
 									}
 									if(isset($_POST['DishQuery2'])) { 
 										include "db_conn.php";
-										$query_dish = "SELECT * FROM dish AS d, supplier AS s WHERE d.dId IN (SELECT dId FROM orders GROUP BY dId HAVING COUNT(*)>2)";
+										$query_dish = "SELECT * FROM dish AS d  NATURAL JOIN supplier WHERE d.dId IN (SELECT dId FROM orders GROUP BY dId HAVING COUNT(*)>2)";
 										if($stmt = $db->query($query_dish)){
 											while($result=mysqli_fetch_object($stmt)){
 												echo "<tr>";
