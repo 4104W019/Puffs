@@ -67,6 +67,7 @@
                                             <td>
                                                 <input type="text" name="SupplierSNo" id="SupplierSNo" class="Cinput" maxlength="15">
                                             </td>
+                                            <td  width = 60% ></td>
                                         </tr>
                                         <tr>
                                             <td>廠商名稱：</td>

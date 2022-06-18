@@ -81,16 +81,7 @@
 				            <div id="ItemContent">
                                 <div id="SupplierAdd_btn" class="Content_button" onclick="SupplierAdd();" onmouseover="OnButtonOver(this)" onmouseout="OnButtonOut(this)" onmousedown="OnButtonDown(this)" onmouseup="OnButtonUp(this)">新增廠商</div>
 					            <table id="tabBasic" rules=none border=2 style="width:100%;">
-                                    <tr>
-                                        <td>查詢種類：</td>
-                                        <td>
-                                            <select id="OrderType" class="Cselesct">
-                                                <option value="0" selected>全部</option>
-                                                <!--<option value="1">部分</option>-->
-                                            </select>
-                                        </td>
-                                        <td  width = 60% ></td>
-                                    </tr>
+
                                     <tr>
                                         <td>
                                             <form method="post">

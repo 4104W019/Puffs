@@ -88,16 +88,6 @@
                                 <div id="DishAdd_btn" class="Content_button" onclick="DishAdd();" onmouseover="OnButtonOver(this)" onmouseout="OnButtonOut(this)" onmousedown="OnButtonDown(this)" onmouseup="OnButtonUp(this)">新增單點</div>
 					            <table id="tabBasic" rules=none border=2 style="width:100%;">
                                     <tr>
-                                        <td>查詢種類：</td>
-                                        <td>
-                                            <select id="OrderType" class="Cselesct">
-                                                <option value="0" selected>全部</option>
-                                                <!--<option value="1">部分</option>-->
-                                            </select>
-                                        </td>
-                                        <td  width = 60% ></td>
-                                    </tr>
-                                    <tr>
                                         <td>
                                             <form method="post">
 											<input type="submit" id="DishQuery" name="DishQuery" class="Content_button" value="查詢" onmouseover="OnButtonOver(this)" onmouseout="OnButtonOut(this)" onmousedown="OnButtonDown(this)" onmouseup="OnButtonUp(this)"/>
@@ -149,7 +139,7 @@
 									}
 									if(isset($_POST['DishQuery1'])) { 
 										include "db_conn.php";
-										$query_dish = "SELECT * FROM dish AS d NATURAL JOIN supplier WHERE d.dId NOT IN (SELECT dId FROM orders)";
+										$query_dish = "SELECT * FROM dish AS d NATURAL JOIN supplier WHERE d.dId NOT IN (SELECT DISTINCT dId FROM orders)";
 										if($stmt = $db->query($query_dish)){
 											while($result=mysqli_fetch_object($stmt)){
 												echo "<tr>";

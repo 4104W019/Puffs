@@ -127,7 +127,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>商品名稱：</td>
+                                            <td>商品編號：</td>
                                             <td>
                                                 <input type="text" name="OrderpName" id="OrderpName" class="Cinput" maxlength="15">
                                             </td>
